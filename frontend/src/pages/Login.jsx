@@ -1,13 +1,13 @@
-import axios from "axios"
-import { useState } from "react"
-import { useNavigate } from "react-router-dom"
+import { useState } from "react";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
-export default function Login() {
+function Login() {
 
-    const navigate = useNavigate()
+    const navigate = useNavigate();
 
-    const [email, setEmail] = useState("")
-    const [password, setPassword] = useState("")
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
 
     const login = async () => {
 
@@ -15,38 +15,46 @@ export default function Login() {
             "http://localhost:5000/api/auth/login",
             { email, password },
             { withCredentials: true }
-        )
+        );
 
-        navigate("/dashboard")
-
-    }
+        navigate("/dashboard");
+    };
 
     return (
 
-        <div className="flex flex-col gap-4 p-10">
+        <div className="h-screen flex items-center justify-center bg-gradient-to-r from-blue-500 to-purple-500">
 
-            <input
-                className="border p-2"
-                placeholder="email"
-                onChange={e => setEmail(e.target.value)}
-            />
+            <div className="bg-white p-8 rounded-xl shadow-lg w-80">
 
-            <input
-                className="border p-2"
-                type="password"
-                placeholder="password"
-                onChange={e => setPassword(e.target.value)}
-            />
+                <h1 className="text-2xl font-bold text-center mb-6">
+                    Login
+                </h1>
 
-            <button
-                className="bg-green-500 text-white p-2"
-                onClick={login}
-            >
-                Login
-            </button>
+                <input
+                    className="border p-2 w-full mb-4 rounded"
+                    placeholder="Email"
+                    onChange={(e) => setEmail(e.target.value)}
+                />
+
+                <input
+                    className="border p-2 w-full mb-4 rounded"
+                    type="password"
+                    placeholder="Password"
+                    onChange={(e) => setPassword(e.target.value)}
+                />
+
+                <button
+                    onClick={login}
+                    className="bg-blue-600 text-white w-full p-2 rounded"
+                >
+                    Login
+                </button>
+
+            </div>
 
         </div>
 
-    )
-
+    );
 }
+
+export default Login;
